@@ -1,0 +1,23 @@
+{% extends 'nav.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <section class="" style="margin-top: 100px;">
+        <div class="col mb-4">
+            <div class="card h-100">
+              <img src="{{data.urlToImage}}" alt="..." >
+              <div class="card-body">
+                <p><h5>{{data.title}}</h5></p>
+                <!--paypal-->
+                <p>{{ data.content }}</p>
+                <hr>
+                <small>source: {{data.source.name}}</small>
+                <br>
+                <small>date: {{data.publishedAt}}</small>
+              </div>
+            </div>
+          </div>
+    </section>
+</div>
+
+{% endblock %}

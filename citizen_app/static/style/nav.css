@@ -1,0 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100&display=swap');
+.dropdown-toggle::after {
+    display: none;
+  }
+.text-decoration-none{
+  text-decoration: none!important;
+}
+/* Font Awesome Icons have variable width. Added fixed width to fix that.*/
+.icon-width { width: 2rem;}
+
+.nav-link1{
+    text-align: right;
+    color: whitesmoke;
+}
