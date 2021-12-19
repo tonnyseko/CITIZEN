@@ -10,8 +10,8 @@ urlpatterns = [
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
     path('password_reset/', views.password_reset_request, name='password_reset'),
-    path('/paypal-return/', views.PaypalReturnView.as_view(), name='paypal-return'),
-    path('/paypal-cancel/', views.PaypalCancelView.as_view(), name='paypal-cancel'),
     path('pdf/', views.GeneratePdf.as_view(), name='pdf'),
-    path('showreadmore/<title>', csrf_exempt(views.showReadMore), name='showreadmore')
+    path('showreadmore/<title>', csrf_exempt(views.showReadMore), name='showreadmore'),
+    path('report/', views.report, name='report'),
+    path('payment/', views.payment, name='payment'),
 ]

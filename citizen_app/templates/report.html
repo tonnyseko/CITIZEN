@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>Title</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             body {
                 font-weight: 200;
@@ -53,58 +54,45 @@
     </head>
     <body>
         {% block content %}
-        <div class='wrapper'>
-            <div class='header'>
-                <p class='title'>Report # </p>
+        <div class="container">
+            <button onclick="window.print()" style="font-size: 12px; float: right;">print <i style="font-size:12px;" class="fa">&#xf02f;</i></button>
+            <div class='wrapper'>
+                
+                <div class='header'>
+                    <h1 style="color: orange; margin-bottom: 10px; margin-top: 50px; font-size: 25px; text-align: center;">Citizen Digital</h1>
+                    <p style="color: black; margin-top: 10px; font-size: 11px;">digitalsales@royalmedia.co.ke</p>
+                    <p style="color: black; margin-top: 10px; font-size: 11px;"> Juma Road Off Dennis Pritt Road</p>
+                
+                    <p class='title'>Report # </p>
+                </div>
+            <div>
+            <div class='details'>
+                <strong>Name:</strong> {{user.username}}<br/> <br>                   <!--name of the logged in user-->
+                <strong>Date: </strong> {{today}}                           <!--current date-->
+                <br><br>
+                <strong>Membership Type:</strong> monthly                   <!--monthly, quarterly, or annually-->
+                <br><br>
+                <strong>Membership Fees:</strong> USD 5.00                 <!-- amount paid for the membership-->
+                <hr>
+                <h3 style="text-align: center; color: blue;">News you are subscribed to</h3>
+
+                <table>                             <!--use the format below-->
+                    <tr>
+                    <th>News Id</th>
+                    <th>Source Name</th>
+                    <th>Author</th>
+                    </tr>
+                    {% for i in articles %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{i.source.name}}</td>
+                    <td>{{i.author}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                
             </div>
-        <div>
-        <div class='details'>
-            
-            Name: <br/>
-            Date:
-            <hr class='hrItem' />
-
-            <table>
-                <tr>
-                  <th>News Id</th>
-                  <th>Source Name</th>
-                  <th>Date Published</th>
-                </tr>
-                <tr>
-                  <td>Alfreds Futterkiste</td>
-                  <td>Maria Anders</td>
-                  <td>Germany</td>
-                </tr>
-                <tr>
-                  <td>Centro comercial Moctezuma</td>
-                  <td>Francisco Chang</td>
-                  <td>Mexico</td>
-                </tr>
-                <tr>
-                  <td>Ernst Handel</td>
-                  <td>Roland Mendel</td>
-                  <td>Austria</td>
-                </tr>
-                <tr>
-                  <td>Island Trading</td>
-                  <td>Helen Bennett</td>
-                  <td>UK</td>
-                </tr>
-                <tr>
-                  <td>Laughing Bacchus Winecellars</td>
-                  <td>Yoshi Tannamuri</td>
-                  <td>Canada</td>
-                </tr>
-                <tr>
-                  <td>Magazzini Alimentari Riuniti</td>
-                  <td>Giovanni Rovelli</td>
-                  <td>Italy</td>
-                </tr>
-              </table>
-
-            
         </div>
-    </div>
     {% endblock %}
     </body>
 </html>

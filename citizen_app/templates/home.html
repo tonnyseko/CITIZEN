@@ -2,7 +2,7 @@
   {% block content %}
     {% load static %}
     <!--cards in a row-->
-    <div class="top" style="margin-top: 100px">
+    <div class="top" style="margin-top: 120px; background: whitesmoke;">
       <div class="container">
         <div class="row row-cols-1 row-cols-md-3">
           {% for i in articles %}
@@ -14,12 +14,12 @@
                 <!--paypal-->
                 
                 {% if user.is_authenticated %}
-                <a class="readmore" target="_blank" href="{% url 'citizen_app:showreadmore' i.title %}" rel="noopener">Read more...</a>
-                  {% else %}
+
+                  <a class="readmore" target="_blank" href="/payment" rel="noopener">Read more...</a>
+                    {% else %}
                   <a class="readmore" target="_blank" href="{% url 'citizen_app:login' %}" rel="noopener">Login to read more..</a>  
                 {% endif %}
                 <hr>
-                <small>source: {{i.source.name}}</small>
                 <br>
                 <small>date: {{i.publishedAt}}</small>
               </div>
@@ -36,62 +36,6 @@
       
 
   
-  <!--footer starts here-->
-  <footer data-v="" >
-    <div class="footer" data-v="">
-      <div class="row" data-v="">
-        <div class="container" data-v="">
-          <div class="container">
-            <div class="col-md-12 nopadding" data-v="">
-              <div class="col-md-4" data-v="">
-                <h3 data-v="">About US</h3>
-                <ul data-v="">
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Advertise with Us</a>
-                    </li>
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Privacy Policy</a>
-                    </li>
-                </ul>
-              </div>
-
-              <div class="col-md-4" data-v="">
-                <h3 data-v="">our products</h3>
-                <ul data-v="">
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Viusasa</a>
-                    </li>
-                </ul>
-                <span class="down"> ©2021 Citizen Digital. All rights reserved </span>
-                <br><br><br><br><br>
-              </div>
-
-              <div class="col-md-4" data-v="">
-                <h3 data-v="">our channels</h3>
-                <ul data-v="">
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Citizen TV</a>
-                    </li>
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Inooro TV</a>
-                    </li>
-                    <li data-v="">
-                      <i class="fa fa-chevron-right" data-v=""></i>
-                      <a target="_blank" href="" data-v="">Citizen Digital</a>
-                    </li>
-                </ul>
-              </div>
-            </div>
-            
-          </div>
-      </div>
-    </div>     
-  </footer>
-<!--footer ends here-->
+  
 {% endblock %}
   

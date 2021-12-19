@@ -1,15 +1,7 @@
 
 import os
-from django.contrib.messages import constants as messages
+from django.contrib import messages
 from pathlib import Path
-
-MESSAGE_TAGS = {
-        messages.DEBUG: 'alert-secondary',
-        messages.INFO: 'alert-info',
-        messages.SUCCESS: 'alert-success',
-        messages.WARNING: 'alert-warning',
-        messages.ERROR: 'alert-danger',
- }
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,8 +31,8 @@ INSTALLED_APPS = [
     'citizen_app.apps.CitizenAppConfig',
     'crispy_forms',
     'paypal.standard.ipn',
-    
-    #add the following
+
+    # add the following
     'django.contrib.sites',
     'allauth',
     'allauth.account',
@@ -50,10 +42,10 @@ INSTALLED_APPS = [
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 AUTHENTICATION_BACKENDS = (
- #used for default signin such as logging into admin panel
- 'django.contrib.auth.backends.ModelBackend', 
-  
- )
+    # used for default signin such as logging into admin panel
+    'django.contrib.auth.backends.ModelBackend',
+
+)
 
 SITE_ID = 1
 
@@ -107,7 +99,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    
+
 ]
 
 
@@ -134,6 +126,10 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 
 ]
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'danger'
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

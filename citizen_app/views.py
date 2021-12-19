@@ -43,6 +43,10 @@ API_KEY = '8d8d51e07d8d40078290e6f9a8c68ed4'
 
 # paypal
 
+category = ""
+relevancy = ""
+popularity = ""
+
 
 class DataManager:
     data = []
@@ -100,6 +104,10 @@ def news(request):
     return render(request, 'home.html', context)
 
 
+def report(request):
+    return render(request, 'report.html')
+
+
 # signup page
 def register_request(request):
     if request.method == "POST":
@@ -136,6 +144,7 @@ def login_request(request):
     return render(request=request, template_name="accounts/login.html", context={"login_form": form})
 
 # logout page
+
 
 def logout_request(request):
     logout(request)
@@ -207,10 +216,28 @@ class PaypalCancelView(TemplateView):
 
 # report view
 class GeneratePdf(View):
+    def render_data(request):
+        url = f'https://newsapi.org/v2/top-headlines?country=us&sortBy={relevancy}&apiKey={API_KEY}'
+        response = requests.get(url)
+        data = response.json()
+
+        articles = data['articles']
+        uuid = 0
+        newData = []
+        for article in articles:
+            article = {**article, 'uuid': uuid}
+            uuid = uuid + 1
+            article['source']['id'] = uuid
+
+        data_manager = DataManager()
+        data_manager.setData(articles)
+
+        context = {'articles': articles}
+
     def get(self, request, *args, **kwargs):
         template = get_template('report.html')
         context = {
-            
+            "user": request.user,
         }
         html = template.render(context)
         pdf = render_to_pdf('report.html', context)
@@ -233,3 +260,28 @@ def showReadMore(request, title):
         data = response.json()
         context = {'data': data['articles'][0]}
         return render(request, 'readmore.html', context)
+
+
+def report(request):
+    today = date.today()
+    url = f'https://newsapi.org/v2/top-headlines?country=us&sortBy=relevancy&apiKey={API_KEY}'
+    response = requests.get(url)
+    data = response.json()
+
+    articles = data['articles']
+    uuid = 0
+    newData = []
+    for article in articles:
+        article = {**article, 'uuid': uuid}
+        uuid = uuid + 1
+        article['source']['id'] = uuid
+
+    data_manager = DataManager()
+    data_manager.setData(articles)
+
+    context = {'articles': articles, "user": request.user, "today": today}
+    return render(request, 'report.html', context)
+
+
+def payment(request):
+    return render(request, 'payment.html')

@@ -19,7 +19,7 @@
     <title>Breaking news, Business, Sports, Lifestyle</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm bg-dark fixed-top">
+        <nav class="navbar navbar-expand-lg navbar-dark shadow-sm  fixed-top" style="background: black; height: 100px;">
             <div class="container"> 
                 <a class="navbar-brand d-flex align-items-center" href="">
                     <a class="nav-item px-lg-2" href="{% url 'citizen_app:news' %}">
@@ -72,12 +72,15 @@
                             <!--end of sort-->
 
                             <!--report-->
+                            {% if user.is_authenticated %}
                             <li class="nav-item">
-                                <a class="nav-link px-lg-2" href="/pdf">report
+                                <a class="nav-link px-lg-2" target="_blank" href="report">report
                                     <i style="font-size:30px, "class="fa">&#xf019;</i>
                                 </a>
                             </li>
+                            {% endif %}
                             <!--end of report-->
+
 
                             <!--user login sign-->
                             {% if user.is_authenticated %}
@@ -104,21 +107,15 @@
                         </ul>
                         <ul class="navbar-nav ml-auto mt-3 mt-lg-0">
                             <li class="nav-item"> 
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="https://twitter.com/citizentvkenya?s=20">
                                     <i class="fa fa-twitter"></i>
                                     <span class="d-lg-none ml-3">Twitter</spa>
                                 </a>
                             </li>
                             <li class="nav-item"> 
-                                <a class="nav-link" href="#">
+                                <a class="nav-link" href="https://www.facebook.com/CitizenTVKe/">
                                     <i class="fa fa-facebook"></i>
                                     <span class="d-lg-none ml-3">Facebook</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    <i class="fa fa-instagram"></i>
-                                    <span class="d-lg-none ml-3">Instagram</span>
                                 </a>
                             </li>
                         </ul>
@@ -126,11 +123,60 @@
                 </a>
             </div>
         </nav>
-                        
-        <!--The html below this line is for display purpose only-->
+
+
         {% block content %}
-        
+    
         {% endblock %}
+                        
+        <!--footer starts here-->
+        <footer data-v="">
+            <div class="footer" data-v="">
+                <div class="row" data-v="" style="height: 200px; background: black;">
+                    <div class="container" data-v="">
+                        <div class="container">
+                            <div class="col-md-12 nopadding" data-v="">
+                                <div class="col-md-4" data-v="">
+                                    <h3 data-v="">About US</h3>
+                                    <ul data-v="">
+                                        <li data-v="">
+                                        <i class="fa fa-chevron-right" data-v=""></i>
+                                        <a target="_blank" href="" data-v="">Advertise with Us</a>
+                                        </li>
+                                        <li data-v="">
+                                        <i class="fa fa-chevron-right" data-v=""></i>
+                                        <a target="_blank" href="" data-v="">Privacy Policy</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-4" style="margin-top: 150px;" data-v="">
+                                    <span class="down"> ©2021 Citizen Digital. All rights reserved </span>
+
+                                </div>
+
+                                <div class="col-md-4" data-v="">
+                                    <h3 data-v="">contact info</h3>
+                                    <ul data-v="">
+                                        <li data-v="">
+                                            <i class="fa fa-envelope" style="color: orange;" data-v=""></i>
+                                            <a target="_blank" href="mailto:digitalsales@royalmedia.co.ke" data-v="">digitalsales@royalmedia.co.ke</a>
+                                        </li>
+                                        <li data-v="">
+                                            <i class="fa fa-map-marker" style="color: orange;" data-v=""></i>
+                                            <a target="_blank" href="" data-v="">Maalim Juma Road Off Dennis Pritt Road</a>
+                                        </li>
+                                    </ul>
+                                </div>
+
+                            
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>     
+        </footer>
+        <!--footer ends here-->
         <script src="{% static 'js/signup.js' %}"></script>
         <script src="{% static 'js/home.js' %}"></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
