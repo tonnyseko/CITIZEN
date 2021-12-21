@@ -40,14 +40,7 @@ import reportlab                  # generates reports
 
 # news API from newsapi.org
 API_KEY = '8d8d51e07d8d40078290e6f9a8c68ed4'
-
-# paypal
-
-category = ""
-relevancy = ""
-popularity = ""
-
-
+relevancy = ''
 class DataManager:
     data = []
 
@@ -58,34 +51,31 @@ class DataManager:
         return self.data
 
 
-def simpleCheckout(request):
-    return render(request, 'paypal_form.html')
-
-
 # obtaining data from the news API
 def news(request):
+    date = datetime.datetime(2021, 9, 19)
+    oldest = request.GET.get('date')
     category = request.GET.get('category')
     popularity = request.GET.get('popularity')
-    relevancy = request.GET.get('relevancy')
 
     if request.method == 'POST':
         qInTitle = request.POST['search']
 
-        url = f'https://newsapi.org/v2/everything?q={qInTitle}&sortBy={popularity}&sortBy={relevancy}&apiKey={API_KEY}'
+        url = f'https://newsapi.org/v2/everything?q={qInTitle}&from={oldest}&sortBy={popularity}&apiKey={API_KEY}'
         response = requests.get(url)
         data = response.json()
 
         articles = data['articles']
 
     elif category:
-        url = f'https://newsapi.org/v2/top-headlines?category={category}&sortBy={popularity}&language=en&apiKey={API_KEY}'
+        url = f'https://newsapi.org/v2/top-headlines?category={category}&sortBy=relevancy&language=en&apiKey={API_KEY}'
         response = requests.get(url)
         data = response.json()
 
         articles = data['articles']
 
     else:
-        url = f'https://newsapi.org/v2/top-headlines?country=us&sortBy={relevancy}&apiKey={API_KEY}'
+        url = f'https://newsapi.org/v2/top-headlines?country=us&sortBy={popularity}&apiKey={API_KEY}'
         response = requests.get(url)
         data = response.json()
 
@@ -280,8 +270,12 @@ def report(request):
     data_manager.setData(articles)
 
     context = {'articles': articles, "user": request.user, "today": today}
+    # return redirect("citizen_app:payment")
     return render(request, 'report.html', context)
 
 
 def payment(request):
-    return render(request, 'payment.html')
+    context = {
+        "user": request.user
+    }
+    return render(request, 'payment.html', context)

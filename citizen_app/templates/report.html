@@ -55,15 +55,16 @@
     <body>
         {% block content %}
         <div class="container">
-            <button onclick="window.print()" style="font-size: 12px; float: right;">print <i style="font-size:12px;" class="fa">&#xf02f;</i></button>
             <div class='wrapper'>
-                
                 <div class='header'>
-                    <h1 style="color: orange; margin-bottom: 10px; margin-top: 50px; font-size: 25px; text-align: center;">Citizen Digital</h1>
+                    <div>
+                        <button style="font-size: 12px; float: right; margin-bottom: 0%;" onclick="window.print()">print <i style="font-size:12px;" class="fa">&#xf02f;</i></button>
+                    </div>
+                    <h1 style="color: orange; margin-bottom: 10px; margin-top: 70px; font-size: 25px; text-align: center; margin-left: 60px;">Citizen Digital</h1>
                     <p style="color: black; margin-top: 10px; font-size: 11px;">digitalsales@royalmedia.co.ke</p>
                     <p style="color: black; margin-top: 10px; font-size: 11px;"> Juma Road Off Dennis Pritt Road</p>
                 
-                    <p class='title'>Report # </p>
+                    <p class='title'>Report</p>
                 </div>
             <div>
             <div class='details'>
@@ -81,12 +82,14 @@
                     <th>News Id</th>
                     <th>Source Name</th>
                     <th>Author</th>
+                    <th>News Title</th>
                     </tr>
                     {% for i in articles %}
                     <tr>
                     <td>{{forloop.counter}}</td>
                     <td>{{i.source.name}}</td>
                     <td>{{i.author}}</td>
+                    <td>{{i.title}}</td>
                     </tr>
                     {% endfor %}
                 </table>

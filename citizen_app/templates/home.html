@@ -15,9 +15,9 @@
                 
                 {% if user.is_authenticated %}
 
-                  <a class="readmore" target="_blank" href="/payment" rel="noopener">Read more...</a>
+                  <a class="readmore" target="_blank" href={{i.url}} rel="noopener">Read more...</a>
                     {% else %}
-                  <a class="readmore" target="_blank" href="{% url 'citizen_app:login' %}" rel="noopener">Login to read more..</a>  
+                  <a class="readmore" target="_blank" href="/login" rel="noopener">login to read more </a>  
                 {% endif %}
                 <hr>
                 <br>
@@ -33,9 +33,6 @@
       </div>
     <!--end of cards-->
     </div>
-      
-
-  
-  
+    
 {% endblock %}
   
