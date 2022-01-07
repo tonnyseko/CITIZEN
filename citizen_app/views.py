@@ -40,7 +40,7 @@ import reportlab                  # generates reports
 
 # news API from newsapi.org
 API_KEY = '8d8d51e07d8d40078290e6f9a8c68ed4'
-relevancy = ''
+
 class DataManager:
     data = []
 
@@ -207,7 +207,7 @@ class PaypalCancelView(TemplateView):
 # report view
 class GeneratePdf(View):
     def render_data(request):
-        url = f'https://newsapi.org/v2/top-headlines?country=us&sortBy={relevancy}&apiKey={API_KEY}'
+        url = f'https://newsapi.org/v2/top-headlines?country=us&apiKey={API_KEY}'
         response = requests.get(url)
         data = response.json()
 

@@ -2,6 +2,8 @@
 .dropdown-toggle::after {
     display: none;
   }
+.dropdown-menu:hover .dropdown-content {display: block;}
+
 .text-decoration-none{
   text-decoration: none!important;
 }

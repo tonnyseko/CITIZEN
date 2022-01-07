@@ -1,7 +1,8 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+{% load static %}
 <html>
     <head>
-        <title>Title</title>
+        <title>report</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <style type="text/css">
             body {
@@ -9,10 +10,17 @@
                 font-size: 14px;
             }
             .header {
-                font-size: 20px;
                 font-weight: 100;
                 text-align: center;
-                color: #007cae;
+                color: black;
+                align-items: center;
+                justify-content: center;
+            }
+            .report_header1{
+                font-size: 30px;
+            }
+            .report_header2{
+                font-size: 12px;
             }
             .title {
                 font-size: 22px;
@@ -54,17 +62,20 @@
     </head>
     <body>
         {% block content %}
+        <div>
+            <button style="font-size: 10px; float: left; margin-bottom: 10%;" onclick="window.print()">print 
+                <i style="font-size:12px;" class="fa">&#xf02f;</i>
+            </button>
+        </div>
         <div class="container">
             <div class='wrapper'>
-                <div class='header'>
-                    <div>
-                        <button style="font-size: 12px; float: right; margin-bottom: 0%;" onclick="window.print()">print <i style="font-size:12px;" class="fa">&#xf02f;</i></button>
-                    </div>
-                    <h1 style="color: orange; margin-bottom: 10px; margin-top: 70px; font-size: 25px; text-align: center; margin-left: 60px;">Citizen Digital</h1>
-                    <p style="color: black; margin-top: 10px; font-size: 11px;">digitalsales@royalmedia.co.ke</p>
-                    <p style="color: black; margin-top: 10px; font-size: 11px;"> Juma Road Off Dennis Pritt Road</p>
-                
-                    <p class='title'>Report</p>
+                <div class='header'> 
+                    <img class = "report_header" src="{% static 'images/citizen-logo.png' %}">
+                    <h1 class = "report_header1">citizen Digital</h1>
+                    <p class = "report_header2">digitalsales@royalmedia.co.ke
+                        <br>Juma Road Off Dennis Pritt Road
+                    </p>
+                    <p class='report_header1'>Report</p>
                 </div>
             <div>
             <div class='details'>
@@ -83,6 +94,7 @@
                     <th>Source Name</th>
                     <th>Author</th>
                     <th>News Title</th>
+                    <th>Date Updated</th>
                     </tr>
                     {% for i in articles %}
                     <tr>
@@ -90,6 +102,7 @@
                     <td>{{i.source.name}}</td>
                     <td>{{i.author}}</td>
                     <td>{{i.title}}</td>
+                    <td>{{i.publishedAt}}</td>
                     </tr>
                     {% endfor %}
                 </table>

@@ -11,6 +11,9 @@
         <div id="paypal-button-container"></div>
       </div>
     </div>
+    <div id="report" style="display: none">
+      <a class="readmore" target="_blank" style="margin-bottom: 100px; margin-left: 160px; font-size: 20px;" href={% url 'citizen_app:report' %} rel="noopener">view report</a>
+    </div>
   <script src="https://www.paypal.com/sdk/js?client-id=AX3NQAYH08vH1JrWCW2K3m08piFXO0PmmW6QmNvIV7h_8Yg75mJXg-IHM51li8A6ZL4X3RVk11WG-vHD&enable-funding=venmo&currency=USD" data-sdk-integration-source="button-factory"></script>
   <script>
     function initPayPalButton() {
@@ -41,6 +44,8 @@
             element.innerHTML = '';
             element.innerHTML = '<h3>Thank you for your payment!</h3>';
 
+            const report = document.getElementById('report').style.display = 'block';
+
             // Or go to another URL:  actions.redirect('thank_you.html');
             
           });
@@ -54,7 +59,6 @@
     initPayPalButton();
   </script>
   <p class="text-muted" style="margin-right: 650px; margin-top: 10px;">Note: After clicking on the button, you will be directed to a secure gateway for payment. After completing the payment process, you will be redirected back to the website to view details of your report. </p>
-  <a class="readmore" target="_blank" style="margin-bottom: 100px; margin-left: 150px;" href={% url 'citizen_app:report' %} rel="noopener">view report</a>
 </div>
 
   {% endblock %}
